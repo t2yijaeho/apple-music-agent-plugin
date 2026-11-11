@@ -1,0 +1,10 @@
+.env
+.env.*
+*.log
+__pycache__/
+*.py[cod]
+.venv/
+resolution_cache.json
+*_library_*.json
+*_playlist*.json
+music/

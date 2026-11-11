@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/apple-music/library-review-plan.schema.json",
+  "title": "Apple Music read-only library review plan",
+  "type": "object",
+  "required": [
+    "mode",
+    "source",
+    "target",
+    "matched_count",
+    "matched_by",
+    "proposed_adds",
+    "unresolved",
+    "review_candidates",
+    "album_review",
+    "note"
+  ],
+  "properties": {
+    "mode": { "const": "read_only_review_plan" },
+    "source": { "$ref": "#/$defs/snapshot" },
+    "target": { "$ref": "#/$defs/snapshot" },
+    "matched_count": { "type": "integer", "minimum": 0 },
+    "matched_by": {
+      "type": "object",
+      "propertyNames": { "enum": ["catalog_id", "resolution_cache", "isrc"] },
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "proposed_adds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "target_catalog_id", "status"],
+        "properties": {
+          "source": { "$ref": "#/$defs/track" },
+          "target_catalog_id": { "type": "string", "minLength": 1 },
+          "status": { "const": "candidate_add_review_required" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "unresolved": { "type": "array", "items": { "$ref": "#/$defs/unresolved" } },
+    "review_candidates": { "type": "array", "items": { "$ref": "#/$defs/candidateReview" } },
+    "album_review": { "type": "array", "items": { "$ref": "#/$defs/albumReview" } },
+    "note": { "type": "string" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "snapshot": {
+      "type": "object",
+      "required": ["label", "track_count"],
+      "properties": {
+        "label": { "type": "string" },
+        "track_count": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "track": {
+      "type": "object",
+      "required": ["library_id", "catalog_id", "isrc", "name", "artist", "album"],
+      "properties": {
+        "library_id": { "type": ["string", "null"] },
+        "catalog_id": { "type": ["string", "null"] },
+        "isrc": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "artist": { "type": ["string", "null"] },
+        "album": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "unresolved": {
+      "type": "object",
+      "required": ["source", "reason"],
+      "properties": {
+        "source": { "$ref": "#/$defs/track" },
+        "reason": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "candidateReview": {
+      "type": "object",
+      "required": ["source", "candidates", "reason"],
+      "properties": {
+        "source": { "$ref": "#/$defs/track" },
+        "candidates": { "type": "array", "items": { "$ref": "#/$defs/track" } },
+        "reason": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "albumReview": {
+      "type": "object",
+      "required": ["source", "target", "reason"],
+      "properties": {
+        "source": { "$ref": "#/$defs/track" },
+        "target": { "$ref": "#/$defs/track" },
+        "reason": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

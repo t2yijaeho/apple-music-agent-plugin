@@ -1,0 +1,22 @@
+[
+  {
+    "id": "source-library-1",
+    "attributes": {
+      "name": "Synthetic Track One",
+      "artistName": "Example Artist",
+      "albumName": "Example Album",
+      "isrc": "QZABC2600001",
+      "playParams": { "catalogId": "source-catalog-1" }
+    }
+  },
+  {
+    "id": "source-library-2",
+    "attributes": {
+      "name": "Unmapped Example",
+      "artistName": "Demo Performer",
+      "albumName": "Demo Release",
+      "isrc": "QZABC2600002",
+      "playParams": { "catalogId": "source-catalog-2" }
+    }
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/apple-music/playlist-verification.schema.json",
+  "title": "Apple Music read-only playlist verification report",
+  "type": "object",
+  "required": ["mode", "expected_label", "actual_label", "expected_count", "actual_count", "matched_count", "membership_verified", "order_verified", "complete", "matched", "missing", "extra", "duplicates", "note"],
+  "properties": {
+    "mode": { "const": "read_only_playlist_verification" },
+    "expected_label": { "type": "string" },
+    "actual_label": { "type": "string" },
+    "expected_count": { "type": "integer", "minimum": 0 },
+    "actual_count": { "type": "integer", "minimum": 0 },
+    "matched_count": { "type": "integer", "minimum": 0 },
+    "membership_verified": { "type": "boolean" },
+    "order_verified": { "type": "boolean" },
+    "complete": { "type": "boolean" },
+    "matched": { "type": "array", "items": { "type": "object" } },
+    "missing": { "type": "array", "items": { "$ref": "#/$defs/track" } },
+    "extra": { "type": "array", "items": { "type": "object", "required": ["position", "track"], "properties": { "position": { "type": "integer", "minimum": 0 }, "track": { "$ref": "#/$defs/track" } }, "additionalProperties": false } },
+    "duplicates": { "type": "array", "items": { "type": "object", "required": ["position", "track"], "properties": { "position": { "type": "integer", "minimum": 0 }, "track": { "$ref": "#/$defs/track" } }, "additionalProperties": false } },
+    "note": { "type": "string" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "track": {
+      "type": "object",
+      "required": ["library_id", "catalog_id", "catalog_ids", "isrc", "name", "artist"],
+      "properties": {
+        "library_id": { "type": ["string", "null"] },
+        "catalog_id": { "type": ["string", "null"] },
+        "catalog_ids": { "type": "array", "items": { "type": "string" } },
+        "isrc": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "artist": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    }
+  }
+}

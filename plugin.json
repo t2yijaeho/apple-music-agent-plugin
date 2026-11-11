@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "apple-music-manager",
+  "version": "0.1.0",
+  "description": "Portable Apple Music library and playlist workflows with local MCP access and offline verification tools.",
+  "author": { "name": "t2yijaeho" },
+  "homepage": "https://github.com/t2yijaeho/apple-music-agent-plugin",
+  "repository": "https://github.com/t2yijaeho/apple-music-agent-plugin",
+  "license": "Apache-2.0",
+  "keywords": ["apple-music", "music-library", "playlists", "mcp", "agent-skills"]
+}

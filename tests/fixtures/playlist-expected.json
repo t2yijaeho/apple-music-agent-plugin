@@ -1,0 +1,22 @@
+{
+  "tracks": [
+    {
+      "id": "expected-library-1",
+      "attributes": {
+        "name": "Synthetic Track One",
+        "artistName": "Example Artist",
+        "isrc": "QZABC2600001",
+        "playParams": { "catalogId": "target-catalog-1" }
+      }
+    },
+    {
+      "id": "expected-library-2",
+      "attributes": {
+        "name": "Synthetic Track Two",
+        "artistName": "Example Artist",
+        "isrc": "QZABC2600004",
+        "playParams": { "catalogId": "target-catalog-4" }
+      }
+    }
+  ]
+}
